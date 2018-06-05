@@ -1,0 +1,14 @@
+# Overview
+
+This Lambda function is designed to poll a server to check for http connectivity.
+
+It works by making an http(s) request from within the VPC in which the target exists. The http(s) request is made against the internal IP address of the target and the function passes the expected domain name as a 'Host' header and ignores any SSL certificate errors to 'spoof' a connection coming from outside the network so that the target web server responds appropriately.
+
+## Dependencies
+* Node 8.10
+
+## Configuration
+
+### AWS
+* The Lambda function must be configured to run from within the VPC that the target instance exists in
+* The correct security group should be assigned (this is usually the same security group as the target)
